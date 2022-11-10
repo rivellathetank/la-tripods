@@ -117,7 +117,8 @@ void Optimize(vector<Item>& items, int prio_tripods, Book book) {
     } else if (a.score.BetterThan(best_score, prio_mask)) {
       best_score = a.score;
       cout << "==[ New best assignment: " << a.score.tripod_count(prio_mask) << '/'
-           << a.score.tripod_count() << '/' << a.score.cost << " ]==\n";
+           << a.score.tripod_count() << '/' << a.score.cost << ' ' << bitset<64>(a.score.tripods)
+           << " ]==\n";
       for (size_t i = 0; i != items.size(); ++i) {
         if (items[i].used)
           cout << "Use item: #" << setfill('0') << setw(2) << i << "\n";
@@ -155,34 +156,12 @@ void Main() {
     kFrostsCall_Chill,
     kPunishingStrike_MagickAmplification,
     kEsotericReaction_StabilizedCrystal,
-
-    // Low-priority tripods.
-    kReverseGravity_WeakPointDetection,
-    kIceShower_FrostZone,
-    kPunishingStrike_Destruction,
-    kInferno_WeakPointDetection,
     kExplosion_MagickAmplification,
-    kSeraphicHail_Enlightnment,
-    kSqual_MindEnchancement,
-    kPunishingStrike_Paralize,
-    kExplosion_MindEnchancement,
-    kFrostsCall_MindEnchancement,
     kDoomsday_FlameArea,
-    kIceShower_EnhancedStrike,
-    kSqual_QuickPrep,
-    kSeraphicHail_MindEnchancement,
-    kInferno_Ignite,
-    kDoomsday_MindEnhancement,
-    kLightningBolt_VitalPointHit,
+    kSeraphicHail_Enlightnment,
     kInferno_FirepowerExpansion,
-    kFrostsCall_Enlightnment,
-    kReverseGravity_JunglesLaw,
-    kSqual_AgileCast,
-    kSeraphicHail_AdditionalExplosion,
+
     kLightningVortex_FierceLightning,
-    kSeraphicHail_WeakPointDetection,
-    kIceShower_Enlightnment,
-    kElegainsTouch_SwiftFootwork,
     kLightningVortex_QuickPace,
     kRimeArrow_FrostBarrage,
     kLightningBolt_EnchancedStrike,
@@ -194,10 +173,31 @@ void Main() {
     kEsotericReaction_JunglesLaw,
     kBlaze_BlazingWildfire,
     kLightningBolt_BranchedLightning,
+    kPunishingStrike_Destruction,
+    kSqual_MindEnchancement,
+    kPunishingStrike_Paralize,
+    kExplosion_MindEnchancement,
+    kFrostsCall_MindEnchancement,
+    kIceShower_EnhancedStrike,
+    kSqual_QuickPrep,
+    kSeraphicHail_MindEnchancement,
+    kInferno_Ignite,
+    kDoomsday_MindEnhancement,
+    kLightningBolt_VitalPointHit,
+    kFrostsCall_Enlightnment,
+    kReverseGravity_JunglesLaw,
+    kIceShower_Enlightnment,
+    kElegainsTouch_SwiftFootwork,
+    kSeraphicHail_AdditionalExplosion,
+    kSqual_AgileCast,
+    kInferno_WeakPointDetection,
+    kIceShower_FrostZone,
+    kReverseGravity_WeakPointDetection,
+    kSeraphicHail_WeakPointDetection,
   };
 
   // This many first tripods listed in Tripod enum are high-priority.
-  const int prio_tripods = 16;
+  const int prio_tripods = 20;
 
   enum Row { kHelmet, kShoulders, kChest, kPants, kGloves, kWeapon };
 
